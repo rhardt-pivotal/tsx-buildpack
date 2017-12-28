@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e
-echo "\n\n***\nHELLO FROM SUPPLY8!!!!\n***\n\n $1   :   $2   :   $3   :   $4"
 if [ -z ${TSX_TAR_URI+x} ]
 then
   echo "TSX_TAR_URI env var not set"
@@ -11,8 +10,6 @@ then
   echo "TSX_ARGS not set"
   exit 1
 fi
-echo "TSX_TAR_URI: $TSX_TAR_URI\n"
-echo "XXX: Making dir: $3/$4/bin"
 mkdir $3/$4/bin
 cat <<'EOF' >> $3/$4/bin/tsx_install.sh
 #!/usr/bin/env bash
@@ -30,9 +27,6 @@ $HOME/../tsx/bin/tsx ${TSX_ARGS} >>$LOG 2>&1
 EOF
 
 chmod +x $3/$4/bin/tsx_install.sh
-echo "wrote install script\n----------\n"
-ls -al $3/$4/bin
-cat $3/$4/bin/tsx_install.sh
 
 cat <<EOF >> $3/$4/config.yml
 --- 
@@ -44,7 +38,3 @@ config:
     "PATH": "\$HOME/../tsx/bin:\$PATH"
     "LD_PRELOAD": "\$HOME/../tsx/lib/tsx64.so"
 EOF
-
-echo "wrote content\n-------------\n"
-ls -al $3/$4
-cat $3/$4/config.yml

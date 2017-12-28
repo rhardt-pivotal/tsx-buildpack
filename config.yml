@@ -1,2 +1,0 @@
-java_opts:
-  system_properties: -Dhello=true
