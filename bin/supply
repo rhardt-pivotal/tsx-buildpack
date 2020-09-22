@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -x
 if [ -z ${TSX_TAR_URI+x} ]
 then
   echo "TSX_TAR_URI env var not set"
