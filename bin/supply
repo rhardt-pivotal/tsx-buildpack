@@ -43,8 +43,8 @@ cat <<EOF >> $3/$4/config.yml
 name: tsx_buildpack
 config:
   java_opts:
-    preformatted_options: ["-Dscript_2=\$(\$HOME/../deps/$4/bin/tsx_install.sh)"]
+    preformatted_options: ["-Dscript_2=\$($HOME/$3/$4/bin/tsx_install.sh)"]
   environment_variables:
-    "PATH": "\$HOME/../tsx/bin:\$PATH"
-    "LD_PRELOAD": "\$HOME/../tsx/lib/tsx64.so"
+    "PATH": "$HOME/tsx/bin:\$PATH"
+    "LD_PRELOAD": "$HOME/tsx/lib/tsx64.so"
 EOF
