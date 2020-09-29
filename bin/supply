@@ -21,6 +21,8 @@ pwd
 echo "**** NEW BUILDPACK"
 
 mkdir $3/$4/bin
+mkdir tsx
+echo "hellloooo" > tsx/test.sh
 cat <<'EOF' >> $3/$4/bin/tsx_install.sh
 #!/usr/bin/env bash
 LOG=/tmp/tsx_install.log
