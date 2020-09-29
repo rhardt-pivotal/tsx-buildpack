@@ -11,6 +11,15 @@ then
   echo "TSX_ARGS not set"
   exit 1
 fi
+
+echo "Moving to workingdir $3/$4"
+
+pwd
+cd $3/$4
+pwd
+
+echo "**** NEW BUILDPACK"
+
 mkdir $3/$4/bin
 cat <<'EOF' >> $3/$4/bin/tsx_install.sh
 #!/usr/bin/env bash
