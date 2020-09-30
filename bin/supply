@@ -12,17 +12,32 @@ then
   exit 1
 fi
 
-echo "Moving to workingdir $3/$4"
+echo "**  Running modified install script"
 
-pwd
-cd $3/$4
-pwd
+wget $TSX_TAR_URI --quiet -O ./tsx.tar
 
-echo "**** NEW BUILDPACK"
+tar xf tsx.tar -C tsx --strip-components 1 
 
-mkdir $3/$4/bin
-mkdir tsx
-echo "hellloooo" > tsx/test.sh
+
+SCRIPTS_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../scripts"
+$SCRIPTS_DIR/bp_install.sh $(pwd)/tsx
+
+
+cat <<'EOF' >> $3/$4/launch.yml
+#!/usr/bin/env bash
+---
+processes:
+- type: "sidecar_process"
+  command: "while true; do echo hello from a sidecar process; sleep 10; done"
+  platforms:
+    cloudfoundry:
+      sidecar_for: [ "web"]
+EOF
+
+
+
+
+
 cat <<'EOF' >> $3/$4/bin/tsx_install.sh
 #!/usr/bin/env bash
 LOG=/tmp/tsx_install.log
