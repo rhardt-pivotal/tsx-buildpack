@@ -140,13 +140,16 @@ fi
 
 BPRootDir="$( cd "$(dirname "$0")" ; pwd -P )/.."
 
+mkdir $BPRootDir/tsx
+
+
 echo "*** running modified installer.  Installer dir: $1"
 
 echo "Starting from $(pwd)"
 ls -al
 
 
-BaseDir=$BPRootDir/$3/$4
+BaseDir=$BPRootDir/tsx
 BinDir=$BaseDir/bin
 LicenseDir=$BaseDir/license
 LibDir=$BaseDir/lib
