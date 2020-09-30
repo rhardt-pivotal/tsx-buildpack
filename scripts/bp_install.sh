@@ -176,10 +176,10 @@ then
 	cp -f ${InstallerDir}tsx32 ${InstallerDir}tsx64 $BackupDir
 
 
-	ln -fs $BinDir/testconsole64 $BinDir/testconsole
-	ln -fs $BinDir/tsx64 $BinDir/tsx
-	ln -fs $LicenseDir/activate64 $LicenseDir/activate
-	ln -fs $LicenseDir/_vnx_rehost64 $LicenseDir/_vnx_rehost
+	cp $BinDir/testconsole64 $BinDir/testconsole
+	cp $BinDir/tsx64 $BinDir/tsx
+	cp $LicenseDir/activate64 $LicenseDir/activate
+	cp $LicenseDir/_vnx_rehost64 $LicenseDir/_vnx_rehost
 else
 	cp -f ${InstallerDir}tsx32.so $LibDir/tsx.so
 	cp -f ${InstallerDir}tsx32 $BinDir/tsx
