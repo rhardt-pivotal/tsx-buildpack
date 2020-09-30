@@ -138,29 +138,16 @@ fi
 
 
 
-BPRootDir="$( cd "$(dirname "$0")" ; pwd -P )/.."
-
-mkdir $BPRootDir/tsx
-
-
 echo "*** Installer dir: $1"
 
-echo "Starting from $(pwd)"
-ls -al
-
-
-BaseDir=$BPRootDir/tsx
+BaseDir=$1/../tsx
 BinDir=$BaseDir/bin
 LicenseDir=$BaseDir/license
 LibDir=$BaseDir/lib
 DataDir=$BaseDir/data
 BackupDir=$BinDir/backup
 
-
-
-InstallerDir=$1   # "$( cd "$(dirname "$0")" ; pwd -P )/"
-
-
+InstallerDir=$1
 
 rm -rf $BinDir $LibDir
 
