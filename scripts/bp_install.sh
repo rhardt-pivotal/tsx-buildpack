@@ -134,6 +134,8 @@ fi
 
 BPRootDir="$( cd "$(dirname "$0")" ; pwd -P )/.."
 
+echo "*** running modified installer.  Installer dir: $1"
+
 echo "Starting from $(pwd)"
 ls -al
 
@@ -145,7 +147,7 @@ LibDir=$BaseDir/lib
 DataDir=$BaseDir/data
 BackupDir=$BinDir/backup
 
-echo "*** running modified installer.  Installer dir: $1"
+
 
 InstallerDir=$1   # "$( cd "$(dirname "$0")" ; pwd -P )/"
 

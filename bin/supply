@@ -18,11 +18,12 @@ wget $TSX_TAR_URI --quiet -O ./tsx.tar
 
 ls -al
 
-tar xf tsx.tar -C tsx --strip-components 1 
+mkdir $3/$4/tsx
+tar xf tsx.tar -C $3/$4/tsx --strip-components 1 
 
 
 SCRIPTS_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../scripts"
-$SCRIPTS_DIR/bp_install.sh $(pwd)/tsx
+$SCRIPTS_DIR/bp_install.sh $(pwd)/$3/$4/tsx
 
 
 cat <<'EOF' >> $3/$4/launch.yml
