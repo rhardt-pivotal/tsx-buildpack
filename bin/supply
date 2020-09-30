@@ -36,13 +36,13 @@ $SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer/
 # EOF
 
 
-cat <<'EOF' >> $3/$4/run_tsx.sh
+cat <<EOF >> $3/$4/run_tsx.sh
 #!/usr/bin/env bash
 set -x
 LOG=/tmp/tsx_start.log
-echo "** in run_tsx" >>$LOG
+echo "** in run_tsx" >>\$LOG
 ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx
-LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx ${TSX_ARGS} >>$LOG 2>&1
+LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx ${TSX_ARGS} >>\$LOG 2>&1
 echo "\"TSX_HACK\""
 EOF
 
