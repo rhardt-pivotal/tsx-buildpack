@@ -7,7 +7,7 @@
 # set -e
 set -x
 
-
+echo "*** In bp_install"
 
 checkSysVersion() {
 	# OSsubName: RedHat, SUSE, System_z, Debian, Ubuntu
@@ -143,7 +143,7 @@ BPRootDir="$( cd "$(dirname "$0")" ; pwd -P )/.."
 mkdir $BPRootDir/tsx
 
 
-echo "*** running modified installer.  Installer dir: $1"
+echo "*** Installer dir: $1"
 
 echo "Starting from $(pwd)"
 ls -al
