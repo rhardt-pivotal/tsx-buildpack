@@ -38,9 +38,10 @@ $SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer/
 
 cat <<EOF >> $3/$4/run_tsx.sh
 #!/usr/bin/env bash
-echo "** IN RUN_TSX **"
+LOG=/tmp/tsx_install.log
+echo "** IN RUN_TSX **" >>$LOG
 ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx
-LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS
+LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS >>$LOG 2>&1
 EOF
 
 chmod a+x $3/$4/run_tsx.sh
