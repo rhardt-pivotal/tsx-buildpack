@@ -208,8 +208,8 @@ fi
 
 OldMask=`umask`
 umask 0
-chmod a=rx $BaseDir/tsx
-chmod a=r $BaseDir/tsx/*.txt
+chmod a=rx $BaseDir
+chmod a=r $BaseDir/*.txt
 chmod -R a=rx $BinDir $LibDir $LicenseDir
 chmod a=rwx $DataDir $LicenseDir
 umask $OldMask
