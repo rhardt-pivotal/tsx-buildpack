@@ -170,7 +170,7 @@ mkdir -p $LibDir
 mkdir -p $DataDir
 mkdir -p $BackupDir
 
-cp -f ${InstallerDir}/Readme.txt /home/vcap/tsx
+cp -f ${InstallerDir}/Readme.txt $BaseDir
 
 if [ $? != 0 ];then
 	echo " Installation cancelled."
