@@ -16,6 +16,8 @@ echo "**  Running modified install script"
 
 wget $TSX_TAR_URI --quiet -O ./tsx.tar
 
+ls -al
+
 tar xf tsx.tar -C tsx --strip-components 1 
 
 
