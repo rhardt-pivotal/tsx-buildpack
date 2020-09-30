@@ -4,6 +4,11 @@
 # This is the installation script for tsx for Linux
 # run it as root then reboot the system
 
+set -e
+set -x
+
+
+
 checkSysVersion() {
 	# OSsubName: RedHat, SUSE, System_z, Debian, Ubuntu
 	
