@@ -24,7 +24,7 @@ tar xf tsx.tar -C $3/$4/tsx-installer --strip-components 1
 
 
 SCRIPTS_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../scripts"
-$SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer
+$SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer/
 
 
 cat <<'EOF' >> $3/$4/launch.yml
