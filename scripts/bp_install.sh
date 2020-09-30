@@ -98,17 +98,19 @@ function checkRequiredLibs() {
 	if [ ${ARCH} = 64 ];then
 		checkDependenses 64
 
-		echo $notfound | grep -q "(64 bit)" > /dev/null
-		if [ "$?" != "0" ];then
-			if [ "$notfound" != "" ];then
-				echo -e " WARNING: The following lib(s) are missing and required to time travel 32bit apps:\n$notfound"
-				echo -e " If you only need to time travel 64bit apps then you can ignore this warning."
-				retval=0
-				return
-			fi
-		fi
+		# echo $notfound | grep -q "(64 bit)" > /dev/null
+		# if [ "$?" != "0" ];then
+		# 	if [ "$notfound" != "" ];then
+		# 		echo -e " WARNING: The following lib(s) are missing and required to time travel 32bit apps:\n$notfound"
+		# 		echo -e " If you only need to time travel 64bit apps then you can ignore this warning."
+		# 		retval=0
+		# 		return
+		# 	fi
+		# fi
 	fi
 
+	echo "checkpoint 2"
+	
 	check=lib
 	if [ "${notfound/$check}" != "$notfound" ]; then
 		echo -e " The following lib(s) are required:\n$notfound"
