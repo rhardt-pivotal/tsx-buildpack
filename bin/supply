@@ -30,7 +30,7 @@ cat <<EOF >> $3/$4/launch.yml
 ---
 processes:
 - type: "sidecar_process"
-  command: "ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx && LD_PRELOAD=/home/vcap/tsx/lib /home/vcap/tsx/bin/tsx $TSX_ARGS && sleep infinity"
+  command: "ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx && LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS && sleep infinity"
   platforms:
     cloudfoundry:
       sidecar_for: [ "web"]
