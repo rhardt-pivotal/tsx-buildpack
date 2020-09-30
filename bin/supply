@@ -25,22 +25,33 @@ SCRIPTS_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../scripts"
 $SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer/
 
 
-cat <<EOF >> $3/$4/launch.yml
+# cat <<EOF >> $3/$4/launch.yml
+# ---
+# processes:
+# - type: "sidecar_process"
+#   command: "ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx && LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS && sleep infinity"
+#   platforms:
+#     cloudfoundry:
+#       sidecar_for: ["web"]
+# EOF
+
+
+cat <<EOF >> $3/$4/run_tsx.sh
 #!/usr/bin/env bash
----
-processes:
-- type: "sidecar_process"
-  command: "ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx && LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS && sleep infinity"
-  platforms:
-    cloudfoundry:
-      sidecar_for: [ "web"]
+echo "** IN RUN_TSX **"
+ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx
+LD_PRELOAD=/home/vcap/tsx/lib/tsx64.so /home/vcap/tsx/bin/tsx $TSX_ARGS
 EOF
+
+chmod a+x $3/$4/run_tsx.sh
 
 cat <<EOF >> $3/$4/config.yml
 --- 
 name: tsx_buildpack
 config:
+  java_opts:
+    preformatted_options: ["-Dhack_tsx_script=\$(\$HOME/deps/$4/run_tsx.sh)"]
   environment_variables:
     "PATH": "\$HOME/tsx/bin:\$PATH"
-    "LD_PRELOAD": "\$HOME/tsx/lib/tsx64.so"
+    "LD_PRELOAD": "\$HOME/deps/$4/tsx/lib/tsx64.so"
 EOF
