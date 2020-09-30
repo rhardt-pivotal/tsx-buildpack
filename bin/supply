@@ -21,19 +21,26 @@ ls -al
 mkdir $3/$4/tsx-installer
 tar xf tsx.tar -C $3/$4/tsx-installer --strip-components 1 
 
-
-
 SCRIPTS_DIR="$( cd "$(dirname "$0")" ; pwd -P )/../scripts"
 $SCRIPTS_DIR/bp_install.sh $3/$4/tsx-installer/
 
 
-cat <<'EOF' >> $3/$4/launch.yml
+cat <<EOF >> $3/$4/launch.yml
 #!/usr/bin/env bash
 ---
 processes:
 - type: "sidecar_process"
-  command: "while true; do echo hello from a sidecar process; sleep 10; done"
+  command: "ln -s /home/vcap/deps/$4/tsx /home/vcap/tsx && LD_PRELOAD=/home/vcap/tsx/lib /home/vcap/tsx/bin/tsx $TSX_ARGS && sleep infinity"
   platforms:
     cloudfoundry:
       sidecar_for: [ "web"]
+EOF
+
+cat <<EOF >> $3/$4/config.yml
+--- 
+name: tsx_buildpack
+config:
+  environment_variables:
+    "PATH": "\$HOME/tsx/bin:\$PATH"
+    "LD_PRELOAD": "\$HOME/tsx/lib/tsx64.so"
 EOF
